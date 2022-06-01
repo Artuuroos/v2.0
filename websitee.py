@@ -15,11 +15,11 @@ from distutils.cmd import Command
 import datetime 
 from streamlit.cli import main  
 from streamlit.proto.RootContainer_pb2 import RootContainer
-import pandas as pd from turtle import color
+import pandas as pd 
 import streamlit as st
 import plotly.figure_factory as ff
 import numpy as np
-import pandas as pd
+
 
 
 st.set_page_config(page_title="My Website",layout="wide")
