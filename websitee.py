@@ -15,7 +15,12 @@ from distutils.cmd import Command
 import datetime 
 from streamlit.cli import main  
 from streamlit.proto.RootContainer_pb2 import RootContainer
-import pandas as pd 
+import pandas as pd from turtle import color
+import streamlit as st
+import plotly.figure_factory as ff
+import numpy as np
+import pandas as pd
+
 
 st.set_page_config(page_title="My Website",layout="wide")
 
@@ -165,15 +170,35 @@ st.write("Ihr Zielbahhof ist:", zielbahn)
 
 with st.form(key='form1'):
     submit_button = st.form_submit_button(label='Submit')
+if submit_button:
+  start=option
+  ziel=zielbahn
+  datum=losdatum.strftime("%d.%m.%Y") 
+  uhrzeit_stunde=str(uhrzeit_stunde1)
+  uhrzeit_minuten=str(uhrzeit_minuten1)
 
-start=option
-ziel=zielbahn
-datum=losdatum.strftime("%d.%m.%Y") 
-uhrzeit_stunde=str(uhrzeit_stunde1)
-uhrzeit_minuten=str(uhrzeit_minuten1)
+  uhrzeit_minuten=str(uhrzeit_minuten1)
+  
+df=pd.read_excel("test_4.xlsx")
+zug=df['Bahn']
+preise=df['Preis']
+datum=df['Datum']
+zbh=df['SBH']
+scan=df["Scan"]
 
-uhrzeit_minuten=str(uhrzeit_minuten1)
+with st.form(key='form1'):
+    submit_button1 = st.form_submit_button(label='Submit')
 
+if submit_button1:
+    fig = px.line(        
+        df, #Data Frame
+        x = "Scan", #Columns from the data frame
+        y = "Preis",
+        title = "Preisgraph"
+    )
+    fig.update_traces(line_color = "skyblue")
+
+    st.plotly_chart(fig)
 
 #alter_f=str(list(range(15,5,-1)))
 #alter_y=str(list(range(26,13,-1)))
