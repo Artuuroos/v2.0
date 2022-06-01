@@ -179,26 +179,6 @@ if submit_button:
 
   uhrzeit_minuten=str(uhrzeit_minuten1)
   
-df=pd.read_excel("test_4.xlsx")
-zug=df['Bahn']
-preise=df['Preis']
-datum=df['Datum']
-zbh=df['SBH']
-scan=df["Scan"]
-
-with st.form(key='form1'):
-    submit_button1 = st.form_submit_button(label='Submit')
-
-if submit_button1:
-    fig = px.line(        
-        df, #Data Frame
-        x = "Scan", #Columns from the data frame
-        y = "Preis",
-        title = "Preisgraph"
-    )
-    fig.update_traces(line_color = "skyblue")
-
-    st.plotly_chart(fig)
 
 #alter_f=str(list(range(15,5,-1)))
 #alter_y=str(list(range(26,13,-1)))
